@@ -28,7 +28,7 @@
 ; -------------------------------------
 
 ; Choose the feature level here:
-%define LINE_IMPLEMENTATION_LEVEL 6
+%define LINE_IMPLEMENTATION_LEVEL 7
 
 ; This is the test bed code (don't add anything before this):
 %include "exam-lib.inc"
@@ -222,7 +222,8 @@ implementation6:
     ret
 
 implementation7:
-    ; TODO
+    call calculateValues
+    call bresenham
     ret
 
 calculateValues:
@@ -321,9 +322,32 @@ bresenham:
     mov dx, 0
     .loop:
     mov di, bx
+
+    ; Draw the pixel if we are on screen
+    mov ax, [line_x0]
+    add ax, [movedX]
+    cmp ax, 0
+    jl .outOfBounds
+    cmp ax, SCREEN_W
+    jge .outOfBounds
+    ; TODO: Refacto the bound check on Y
+    mov ax, [line_y0]
+    cmp word [deltaY], 0
+    jl .boundNeg
+    add ax, [movedY]
+    jmp .boundPos
+    .boundNeg:
+    sub ax, [movedY]
+    .boundPos:
+    cmp ax, 0
+    jl .outOfBounds
+    cmp ax, SCREEN_H
+    jge .outOfBounds
     ; Draw the pixel
     mov al, [line_colorIndex]
     stosb
+    .outOfBounds:
+
     ; Increment the positions
     inc cx
     inc word [movedX]
