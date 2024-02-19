@@ -84,19 +84,31 @@ drawLine:
     ret
 
 implementation1:
-    ; ! Insert your line drawing code here !
+    ; al: Pixel color
+    ; bx: Index of the pixel in memory
+    ; cx: Pixel counter
 
-    ; Here is just a tiny snippet to draw a pixel (you should expand/replace it, obviously)
-    ; Draws a pixel at 160x100
+    ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
-    mov ax, 100     ; load y
+    ; Select the starting position
+    mov ax, [line_y0]
     mov bx, SCREEN_W
     mul bx
-    add ax, 160     ; load x
-    mov di, ax
-    mov al, 0fh     ; set arbitrary color index.
+    mov bx, ax
+    ; Select the color
+    mov al, [line_colorIndex]
+    ; Loop through the whole line
+    mov cx, 0
+    .loop:
+    mov di, bx
+    ; Draw the pixel
     stosb
+    ; Increment and repeat
+    inc cx
+    inc bx
+    cmp cx, SCREEN_W
+    jne .loop
     ret
 
 implementation2:
