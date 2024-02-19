@@ -212,7 +212,19 @@ implementation5:
     ; al: Pixel color and temporary variable
     ; bx: Index of the pixel in memory
     ; cx: Pixel's X position
+    call calculateValues
+    call bresenham
+    ret
 
+implementation6:
+    ; TODO
+    ret
+
+implementation7:
+    ; TODO
+    ret
+
+calculateValues:
     ; Calculate the slope
     mov ax, [line_x1]
     sub ax, [line_x0]
@@ -236,7 +248,7 @@ implementation5:
     mov word [slopeXInc], 0
     mov word [slopeYInc], 1
     mov word [slopeIndexInc], SCREEN_W
-    jmp .init
+    ret
     .aboveYX:
     ; (Above the y=x line)
     mov cx, [line_y0]
@@ -248,8 +260,9 @@ implementation5:
     mov word [slopeXInc], 1
     mov word [slopeYInc], 0
     mov word [slopeIndexInc], 1
-    .init:
+    ret
 
+bresenham:
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
@@ -298,12 +311,4 @@ implementation5:
     ; Loop
     cmp cx, [endValue]
     jbe .loop
-    ret
-
-implementation6:
-    ; TODO
-    ret
-
-implementation7:
-    ; TODO
     ret
