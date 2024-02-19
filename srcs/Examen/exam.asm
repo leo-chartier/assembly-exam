@@ -28,7 +28,7 @@
 ; -------------------------------------
 
 ; Choose the feature level here:
-%define LINE_IMPLEMENTATION_LEVEL 5
+%define LINE_IMPLEMENTATION_LEVEL 6
 
 ; This is the test bed code (don't add anything before this):
 %include "exam-lib.inc"
@@ -217,7 +217,8 @@ implementation5:
     ret
 
 implementation6:
-    ; TODO
+    call calculateValues
+    call bresenham
     ret
 
 implementation7:
@@ -225,20 +226,36 @@ implementation7:
     ret
 
 calculateValues:
-    ; Calculate the slope
     mov ax, [line_x1]
-    sub ax, [line_x0]
-    mov [deltaX], ax
+    mov bx, [line_x0]
+    mov cx, [line_y1]
+    mov dx, [line_y0]
     mov word [movedX], 0
-    mov ax, [line_y1]
-    sub ax, [line_y0]
-    mov [deltaY], ax
     mov word [movedY], 0
 
+    ; Swap the two points to have x0 <= x1
+    cmp ax, bx
+    jae .noSwap
+    xchg ax, bx
+    mov [line_x1], ax
+    mov [line_x0], bx
+    xchg cx, dx
+    mov [line_y1], cx
+    mov [line_y0], dx
+    .noSwap:
+
+    ; Calculate the slope
+    sub ax, bx
+    mov [deltaX], ax
+    sub cx, dx
+    mov [deltaY], cx
+
     ; Calculate the correct values depending on the slope
-    cmp ax, [deltaX]
-    jge .aboveYX
-    ; (Below the y=x line)
+    js .negDY
+    cmp cx, [deltaX]
+    jge .largePosDY
+    
+    .smallPosDY:
     mov cx, [line_x0]
     mov ax, [line_x1]
     mov [endValue], ax
@@ -249,14 +266,42 @@ calculateValues:
     mov word [slopeYInc], 1
     mov word [slopeIndexInc], SCREEN_W
     ret
-    .aboveYX:
-    ; (Above the y=x line)
+    
+    .largePosDY:
     mov cx, [line_y0]
     mov ax, [line_y1]
     mov [endValue], ax
     mov word [constXInc], 0
     mov word [constYInc], 1
     mov word [constIndexInc], SCREEN_W
+    mov word [slopeXInc], 1
+    mov word [slopeYInc], 0
+    mov word [slopeIndexInc], 1
+    ret
+
+    .negDY:
+    add cx, [deltaX]
+    js .largePosDY
+
+    .smallNegDY:
+    mov cx, [line_x0]
+    mov ax, [line_x1]
+    mov [endValue], ax
+    mov word [constXInc], 1
+    mov word [constYInc], 0
+    mov word [constIndexInc], 1
+    mov word [slopeXInc], 0
+    mov word [slopeYInc], -1
+    mov word [slopeIndexInc], -SCREEN_W
+    ret
+    
+    .largeNegDY:
+    mov cx, [line_y0]
+    mov ax, [line_y1]
+    mov [endValue], ax
+    mov word [constXInc], 0
+    mov word [constYInc], -1
+    mov word [constIndexInc], -SCREEN_W
     mov word [slopeXInc], 1
     mov word [slopeYInc], 0
     mov word [slopeIndexInc], 1
