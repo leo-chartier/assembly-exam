@@ -53,6 +53,37 @@ section .text
 ; -------------------------------------
 ; Draw a line:
 drawLine:
+    ; TODO
+    ; Idea: Add padding to the implementations and use a relative jump instead
+    ; => "jump by" LINE_IMPLEMENTATION_LEVEL * size_of_implementation + offset
+    ; Idea 2 (simpler): Use the preprocessing by concatenating "implementation"
+    ; with the actual number
+    ; => jmp implementation(LINE_IMPLEMENTATION_LEVEL)
+    %if (LINE_IMPLEMENTATION_LEVEL == 1)
+    jmp implementation1
+    %endif
+    %if (LINE_IMPLEMENTATION_LEVEL == 2)
+    jmp implementation2
+    %endif
+    %if (LINE_IMPLEMENTATION_LEVEL == 3)
+    jmp implementation3
+    %endif
+    %if (LINE_IMPLEMENTATION_LEVEL == 4)
+    jmp implementation4
+    %endif
+    %if (LINE_IMPLEMENTATION_LEVEL == 5)
+    jmp implementation5
+    %endif
+    %if (LINE_IMPLEMENTATION_LEVEL == 6)
+    jmp implementation6
+    %endif
+    %if (LINE_IMPLEMENTATION_LEVEL == 7)
+    jmp implementation7
+    %endif
+    ; Value out of bounds
+    ret
+
+implementation1:
     ; ! Insert your line drawing code here !
 
     ; Here is just a tiny snippet to draw a pixel (you should expand/replace it, obviously)
@@ -68,3 +99,26 @@ drawLine:
     stosb
     ret
 
+implementation2:
+    ; TODO
+    ret
+
+implementation3:
+    ; TODO
+    ret
+
+implementation4:
+    ; TODO
+    ret
+
+implementation5:
+    ; TODO
+    ret
+
+implementation6:
+    ; TODO
+    ret
+
+implementation7:
+    ; TODO
+    ret
