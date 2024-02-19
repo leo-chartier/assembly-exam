@@ -45,7 +45,8 @@ section .bss
     line_y1  resw 1
     deltaX   resw 1
     deltaY   resw 1
-    x_acc    resw 1
+    movedX   resw 1
+    movedY   resw 1
 
 section .text
 
@@ -204,23 +205,19 @@ implementation5:
     ; al: Pixel color and temporary variable
     ; bx: Index of the pixel in memory
     ; cx: Pixel's X position
-    ; dx: Number of pixels moved on X since last move on Y
 
-    ; ; TEMP
-    ; ; Assuming Q1
-    ; mov word [line_x0], 0
-    ; mov word [line_y0], 0
-    ; mov word [line_x1], SCREEN_W
-    ; mov word [line_y1], SCREEN_H
-    ; mov byte [line_colorIndex], 0fh
+    ; TODO: Current program assumes x1 - x0 > y1 - y0
+    ; Needs to be able to switch which variable is incremented
 
     ; Calculate the slope
     mov ax, [line_x1]
     sub ax, [line_x0]
     mov [deltaX], ax
+    mov word [movedX], 0
     mov ax, [line_y1]
     sub ax, [line_y0]
     mov [deltaY], ax
+    mov word [movedY], 0
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
@@ -240,22 +237,27 @@ implementation5:
     stosb
     ; Increment the positions
     inc cx
-    inc dx
+    inc word [movedX]
     inc bx
     ; Calculate our position to the slope
-    mov ax, [deltaY]
     push cx
     push dx
-    mul dx
-    mov cx, [deltaX]
-    div cx
+    mov ax, [deltaY]
+    mov cx, [movedX]
+    mul cx
+    push ax
+    mov ax, [deltaX]
+    mov cx, [movedY]
+    mul cx
+    pop cx
+    sub ax, cx ; ax = (dY*mX - dX*mY) => Positive if above slope
     pop dx
     pop cx
     cmp ax, 0
     ; Increment if necessary
-    je .noYoffset
+    jge .noYoffset
     add bx, SCREEN_W
-    mov dx, 0
+    inc word [movedY]
     .noYoffset:
     ; Loop
     cmp cx, [line_x1]
