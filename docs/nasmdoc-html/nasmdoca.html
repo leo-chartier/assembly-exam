@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>NASM - The Netwide Assembler</title>
+<link href="nasmdoc.css" rel="stylesheet" type="text/css" />
+<link href="local.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<ul class="navbar">
+<li class="first"><a class="prev" href="nasmdo13.html">Chapter 13</a></li>
+<li><a class="next" href="nasmdocb.html">Appendix B</a></li>
+<li><a class="toc" href="nasmdoc0.html">Contents</a></li>
+<li class="last"><a class="index" href="nasmdoci.html">Index</a></li>
+</ul>
+<div class="title">
+<h1>NASM - The Netwide Assembler</h1>
+<span class="subtitle">version 2.16.01</span>
+</div>
+<div class="contents"
+>
+<h2 id="appendix-A">Appendix A: List of Warning Classes</h2>
+<p>These are the warning classes currently defined by NASM for the purpose
+of enabling, disabling and promoting to error. See
+<a href="nasmdoc2.html#section-2.1.26">section 2.1.26</a> and
+<a href="nasmdoc7.html#section-7.13">section 7.13</a>.</p>
+<ul>
+<li>
+<p> <code>all</code>: all possible warnings</p>
+<p><code>all</code> is an group alias for <em>all</em> warning classes.
+Thus, <code>-w+all</code> enables all available warnings, and
+<code>-w-all</code> disables warnings entirely (since NASM 2.13).</p>
+</li>
+<li>
+<p> <code>bad-pragma</code>: malformed %pragma</p>
+<p><code>bad-pragma</code> is a backwards compatibility alias for
+<code>pragma-bad</code>.</p>
+</li>
+<li>
+<p> <code>bnd</code>: invalid BND prefix</p>
+<p><code>bnd</code> is a backwards compatibility alias for
+<code>prefix-bnd</code>.</p>
+</li>
+<li>
+<p> <code>db-empty</code>: no operand for data declaration</p>
+<p><code>db-empty</code> warns about a <code>DB</code>, <code>DW</code>,
+etc declaration with no operands, producing no output. This is permitted,
+but often indicative of an error. See
+<a href="nasmdoc3.html#section-3.2.1">section 3.2.1</a>.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>ea</code>: all <code>ea-</code> warnings</p>
+<p><code>ea</code> is a group alias for all warning classes prefixed by
+<code>ea-</code>; currently <code>ea-absolute</code> and
+<code>ea-dispsize</code>.</p>
+</li>
+<li>
+<p> <code>ea-absolute</code>: absolute address cannot be RIP-relative</p>
+<p><code>ea-absolute</code> warns that an address that is inherently
+absolute cannot be generated with RIP-relative encoding using
+<code>REL</code>, see <a href="nasmdoc7.html#section-7.2.1">section
+7.2.1</a>.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>ea-dispsize</code>: displacement size ignored on absolute address</p>
+<p><code>ea-dispsize</code> warns that NASM does not support generating
+displacements for inherently absolute addresses that do not match the
+address size of the instruction.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>environment</code>: nonexistent environment variable</p>
+<p><code>environment</code> is a backwards compatibility alias for
+<code>pp-environment</code>.</p>
+</li>
+<li>
+<p> <code>float</code>: all <code>float-</code> warnings</p>
+<p><code>float</code> is a group alias for all warning classes prefixed by
+<code>float-</code>; currently <code>float-denorm</code>,
+<code>float-overflow</code>, <code>float-toolong</code>,
+<code>float-underflow</code>.</p>
+</li>
+<li>
+<p> <code>float-denorm</code>: floating point denormal</p>
+<p><code>float-denorm</code> warns about denormal floating point constants.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>float-overflow</code>: floating point overflow</p>
+<p><code>float-overflow</code> warns about floating point underflow.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>float-toolong</code>: too many digits in floating-point number</p>
+<p><code>float-toolong</code> warns about too many digits in floating-point
+numbers.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>float-underflow</code>: floating point underflow</p>
+<p><code>float-underflow</code> warns about floating point underflow (a
+nonzero constant rounded to zero.)</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>forward</code>: forward reference may have unpredictable results</p>
+<p><code>forward</code> warns that a forward reference is used which may
+have unpredictable results, notably in a <code>RESB</code>&ndash;type
+pseudo-instruction. These would be <em>critical expressions</em> (see
+<a href="nasmdoc3.html#section-3.8">section 3.8</a>) but are permitted in a
+handful of cases for compatibility with older versions of NASM. This
+warning should be treated as a severe programming error as the code could
+break at any time for any number of reasons.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>hle</code>: invalid HLE prefix</p>
+<p><code>hle</code> is a backwards compatibility alias for
+<code>prefix-hle</code>.</p>
+</li>
+<li>
+<p> <code>label</code>: all <code>label-</code> warnings</p>
+<p><code>label</code> is a group alias for all warning classes prefixed by
+<code>label-</code>; currently <code>label-orphan</code>,
+<code>label-redef</code>, <code>label-redef-late</code>.</p>
+</li>
+<li>
+<p> <code>label-orphan</code>: labels alone on lines without trailing `:'</p>
+<p><code>label-orphan</code> warns about source lines which contain no
+instruction but define a label without a trailing colon. This is most
+likely indicative of a typo, but is technically correct NASM syntax (see
+<a href="nasmdoc3.html#section-3.1">section 3.1</a>.)</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>label-redef</code>: label redefined to an identical value</p>
+<p><code>label-redef</code> warns if a label is defined more than once, but
+the value is identical. It is an unconditional error to define the same
+label more than once to <em>different</em> values.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>label-redef-late</code>: label (re)defined during code generation</p>
+<p><code>label-redef-late</code> the value of a label changed during the
+final, code-generation pass. This may be the result of strange use of the
+preprocessor. This is very likely to produce incorrect code and may end up
+being an unconditional error in a future version of NASM.</p>
+<p>Enabled and promoted to error by default.</p>
+</li>
+<li>
+<p> <code>lock</code>: LOCK prefix on unlockable instructions</p>
+<p><code>lock</code> is a backwards compatibility alias for
+<code>prefix-lock</code>.</p>
+</li>
+<li>
+<p> <code>macro-def-case-single</code>: single-line macro defined both case
+sensitive and insensitive</p>
+<p><code>macro-def-case-single</code> is a backwards compatibility alias
+for <code>pp-macro-def-case-single</code>.</p>
+</li>
+<li>
+<p> <code>macro-def-greedy-single</code>: single-line macro</p>
+<p><code>macro-def-greedy-single</code> is a backwards compatibility alias
+for <code>pp-macro-def-greedy-single</code>.</p>
+</li>
+<li>
+<p> <code>macro-def-param-single</code>: single-line macro defined with and
+without parameters</p>
+<p><code>macro-def-param-single</code> is a backwards compatibility alias
+for <code>pp-macro-def-param-single</code>.</p>
+</li>
+<li>
+<p> <code>macro-defaults</code>: macros with more default than optional
+parameters</p>
+<p><code>macro-defaults</code> is a backwards compatibility alias for
+<code>pp-macro-defaults</code>.</p>
+</li>
+<li>
+<p> <code>macro-params-legacy</code>: improperly calling multi-line macro
+for legacy support</p>
+<p><code>macro-params-legacy</code> is a backwards compatibility alias for
+<code>pp-macro-params-legacy</code>.</p>
+</li>
+<li>
+<p> <code>macro-params-multi</code>: multi-line macro calls with wrong
+parameter count</p>
+<p><code>macro-params-multi</code> is a backwards compatibility alias for
+<code>pp-macro-params-multi</code>.</p>
+</li>
+<li>
+<p> <code>macro-params-single</code>: single-line macro calls with wrong
+parameter count</p>
+<p><code>macro-params-single</code> is a backwards compatibility alias for
+<code>pp-macro-params-single</code>.</p>
+</li>
+<li>
+<p> <code>negative-rep</code>: regative %rep count</p>
+<p><code>negative-rep</code> is a backwards compatibility alias for
+<code>pp-rep-negative</code>.</p>
+</li>
+<li>
+<p> <code>not-my-pragma</code>: %pragma not applicable to this compilation</p>
+<p><code>not-my-pragma</code> is a backwards compatibility alias for
+<code>pragma-na</code>.</p>
+</li>
+<li>
+<p> <code>number-overflow</code>: numeric constant does not fit</p>
+<p><code>number-overflow</code> covers warnings about numeric constants
+which don't fit in 64 bits.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>obsolete</code>: all <code>obsolete-</code> warnings</p>
+<p><code>obsolete</code> is a group alias for all warning classes prefixed
+by <code>obsolete-</code>; currently <code>obsolete-nop</code>,
+<code>obsolete-removed</code>, <code>obsolete-valid</code>.</p>
+</li>
+<li>
+<p> <code>obsolete-nop</code>: instruction obsolete and is a noop on the
+target CPU</p>
+<p><code>obsolete-nop</code> warns for an instruction which has been
+removed from the architecture, but has been architecturally defined to be a
+noop for future CPUs.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>obsolete-removed</code>: instruction obsolete and removed on the
+target CPU</p>
+<p><code>obsolete-removed</code> warns for an instruction which has been
+removed from the architecture, and is no longer included in the CPU
+definition given in the <code>[CPU]</code> directive, for example
+<code>POP CS</code>, the opcode for which, <code>0Fh</code>, instead is an
+opcode prefix on CPUs newer than the first generation 8086.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>obsolete-valid</code>: instruction obsolete but valid on the
+target CPU</p>
+<p><code>obsolete-valid</code> warns for an instruction which has been
+removed from the architecture, but is still valid on the specific CPU given
+in the <code>CPU</code> directive. Code using these instructions is most
+likely not forward compatible.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>orphan-labels</code>: labels alone on lines without trailing `:'</p>
+<p><code>orphan-labels</code> is a backwards compatibility alias for
+<code>label-orphan</code>.</p>
+</li>
+<li>
+<p> <code>other</code>: any warning not specifically mentioned above</p>
+<p><code>other</code> specifies any warning not included in any specific
+warning class.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>phase</code>: phase error during stabilization</p>
+<p><code>phase</code> warns about symbols having changed values during the
+second-to-last assembly pass. This is not inherently fatal, but may be a
+source of bugs.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>pp</code>: all <code>pp-</code> warnings</p>
+<p><code>pp</code> is a group alias for all warning classes prefixed by
+<code>pp-</code>; currently <code>pp-else-elif</code>,
+<code>pp-else-else</code>, <code>pp-empty-braces</code>,
+<code>pp-environment</code>, <code>pp-macro-def-case-single</code>,
+<code>pp-macro-def-greedy-single</code>,
+<code>pp-macro-def-param-single</code>, <code>pp-macro-defaults</code>,
+<code>pp-macro-params-legacy</code>, <code>pp-macro-params-multi</code>,
+<code>pp-macro-params-single</code>, <code>pp-macro-redef-multi</code>,
+<code>pp-open-braces</code>, <code>pp-open-brackets</code>,
+<code>pp-open-string</code>, <code>pp-rep-negative</code>,
+<code>pp-sel-range</code>, <code>pp-trailing</code>.</p>
+</li>
+<li>
+<p> <code>pp-else</code>: all <code>pp-else-</code> warnings</p>
+<p><code>pp-else</code> is a group alias for all warning classes prefixed
+by <code>pp-else-</code>; currently <code>pp-else-elif</code> and
+<code>pp-else-else</code>.</p>
+</li>
+<li>
+<p> <code>pp-else-elif</code>: %elif after %else</p>
+<p><code>pp-else-elif</code> warns that an <code>%%elif</code>&ndash;type
+directive was encountered after <code>%%elif</code> will never be expanded.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-else-else</code>: %else after %else</p>
+<p><code>pp-else-else</code> warns that a second <code>%else</code> clause
+was found for the same <code>%if</code> statement. The content of this
+<code>%else</code> clause will never be expanded.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-empty-braces</code>: empty %{} construct</p>
+<p><code>pp-empty-braces</code> warns that an empty <code>%{}</code> was
+encountered. This expands to a single <code>%</code> character, which is
+normally the <code>%</code> arithmetic operator.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-environment</code>: nonexistent environment variable</p>
+<p><code>pp-environment</code> warns if a nonexistent environment variable
+is accessed using the <code>%!</code> preprocessor construct (see
+<a href="nasmdoc4.html#section-4.13.2">section 4.13.2</a>.) Such
+environment variables are treated as empty (with this warning issued)
+starting in NASM 2.15; earlier versions of NASM would treat this as an
+error.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro</code>: all <code>pp-macro-</code> warnings</p>
+<p><code>pp-macro</code> is a group alias for all warning classes prefixed
+by <code>pp-macro-</code>; currently <code>pp-macro-def-case-single</code>,
+<code>pp-macro-def-greedy-single</code>,
+<code>pp-macro-def-param-single</code>, <code>pp-macro-defaults</code>,
+<code>pp-macro-params-legacy</code>, <code>pp-macro-params-multi</code>,
+<code>pp-macro-params-single</code>, <code>pp-macro-redef-multi</code>.</p>
+</li>
+<li>
+<p> <code>pp-macro-def</code>: all <code>pp-macro-def-</code> warnings</p>
+<p><code>pp-macro-def</code> is a group alias for all warning classes
+prefixed by <code>pp-macro-def-</code>; currently
+<code>pp-macro-def-case-single</code>,
+<code>pp-macro-def-greedy-single</code>,
+<code>pp-macro-def-param-single</code>.</p>
+</li>
+<li>
+<p> <code>pp-macro-def-case-single</code>: single-line macro defined both
+case sensitive and insensitive</p>
+<p><code>pp-macro-def-case-single</code> warns when a single-line macro is
+defined both case sensitive and case insensitive. The new macro definition
+will override (shadow) the original one, although the original macro is not
+deleted, and will be re-exposed if the new macro is deleted with
+<code>%undef</code>, or, if the original macro is the case insensitive one,
+the macro call is done with a different case.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-def-greedy-single</code>: single-line macro</p>
+<p><code>pp-macro-def-greedy-single</code> definition shadows greedy macro
+warns when a single-line macro is defined which would match a previously
+existing greedy definition. The new macro definition will override (shadow)
+the original one, although the original macro is not deleted, and will be
+re-exposed if the new macro is deleted with <code>%undef</code>, and will
+be invoked if called with a parameter count that does not match the new
+definition.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-def-param-single</code>: single-line macro defined with
+and without parameters</p>
+<p><code>pp-macro-def-param-single</code> warns if the same single-line
+macro is defined with and without parameters. The new macro definition will
+override (shadow) the original one, although the original macro is not
+deleted, and will be re-exposed if the new macro is deleted with
+<code>%undef</code>.</p>
+<p>Enabled and promoted to error by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-defaults</code>: macros with more default than optional
+parameters</p>
+<p><code>pp-macro-defaults</code> warns when a macro has more default
+parameters than optional parameters. See
+<a href="nasmdoc4.html#section-4.5.5">section 4.5.5</a> for why might want
+to disable this warning.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-params</code>: all <code>pp-macro-params-</code>
+warnings</p>
+<p><code>pp-macro-params</code> is a group alias for all warning classes
+prefixed by <code>pp-macro-params-</code>; currently
+<code>pp-macro-params-legacy</code>, <code>pp-macro-params-multi</code>,
+<code>pp-macro-params-single</code>.</p>
+</li>
+<li>
+<p> <code>pp-macro-params-legacy</code>: improperly calling multi-line
+macro for legacy support</p>
+<p><code>pp-macro-params-legacy</code> warns about multi-line macros being
+invoked with the wrong number of parameters, but for bug-compatibility with
+NASM versions older than 2.15, NASM tried to fix up the parameters to match
+the legacy behavior and call the macro anyway. This can happen in certain
+cases where there are empty arguments without braces, sometimes as a result
+of macro expansion.</p>
+<p>The legacy behavior is quite strange and highly context-dependent, and
+can be disabled with:</p>
+<pre>
+     %pragma preproc sane_empty_expansion true
+</pre>
+<p>It is highly recommended to use this option in new code.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-params-multi</code>: multi-line macro calls with wrong
+parameter count</p>
+<p><code>pp-macro-params-multi</code> warns about multi-line macros being
+invoked with the wrong number of parameters. See
+<a href="nasmdoc4.html#section-4.5.1">section 4.5.1</a> for an example of
+why you might want to disable this warning.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-params-single</code>: single-line macro calls with wrong
+parameter count</p>
+<p><code>pp-macro-params-single</code> warns about single-line macros being
+invoked with the wrong number of parameters.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-macro-redef-multi</code>: redefining multi-line macro</p>
+<p><code>pp-macro-redef-multi</code> warns that a multi-line macro is being
+redefined, without first removing the old definition with
+<code>%unmacro</code>.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-open</code>: all <code>pp-open-</code> warnings</p>
+<p><code>pp-open</code> is a group alias for all warning classes prefixed
+by <code>pp-open-</code>; currently <code>pp-open-braces</code>,
+<code>pp-open-brackets</code>, <code>pp-open-string</code>.</p>
+</li>
+<li>
+<p> <code>pp-open-braces</code>: unterminated %{...}</p>
+<p><code>pp-open-braces</code> warns that a preprocessor parameter enclosed
+in braces <code>%{...}</code> lacks the terminating <code>}</code>
+character.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-open-brackets</code>: unterminated %[...]</p>
+<p><code>pp-open-brackets</code> warns that a preprocessor
+<code>%[...]</code> construct lacks the terminating <code>]</code>
+character.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-open-string</code>: unterminated string</p>
+<p><code>pp-open-string</code> warns that a quoted string without a closing
+quotation mark was encountered during preprocessing.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-rep-negative</code>: regative %rep count</p>
+<p><code>pp-rep-negative</code> warns about a negative count given to the
+<code>%rep</code> preprocessor directive.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-sel-range</code>: %sel() argument out of range</p>
+<p><code>pp-sel-range</code> warns that the %sel() preprocessor function
+was passed a value less than 1 or larger than the number of available
+arguments.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pp-trailing</code>: trailing garbage ignored</p>
+<p><code>pp-trailing</code> warns that the preprocessor encountered
+additional text where no such text was expected. This can sometimes be the
+result of an incorrectly written expression, or arguments that are
+inadvertently separated.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>pragma</code>: all <code>pragma-</code> warnings</p>
+<p><code>pragma</code> is a group alias for all warning classes prefixed by
+<code>pragma-</code>; currently <code>pragma-bad</code>,
+<code>pragma-empty</code>, <code>pragma-na</code>,
+<code>pragma-unknown</code>.</p>
+</li>
+<li>
+<p> <code>pragma-bad</code>: malformed %pragma</p>
+<p><code>pragma-bad</code> warns about a malformed or otherwise unparsable
+<code>%pragma</code> directive.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>pragma-empty</code>: empty %pragma directive</p>
+<p><code>pragma-empty</code> warns about a <code>%pragma</code> directive
+containing nothing. This is treated identically to
+<code>%pragma ignore</code> except for this optional warning.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>pragma-na</code>: %pragma not applicable to this compilation</p>
+<p><code>pragma-na</code> warns about a <code>%pragma</code> directive
+which is not applicable to this particular assembly session. This is not
+yet implemented.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>pragma-unknown</code>: unknown %pragma facility or directive</p>
+<p><code>pragma-unknown</code> warns about an unknown <code>%pragma</code>
+directive. This is not yet implemented for most cases.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>prefix</code>: all <code>prefix-</code> warnings</p>
+<p><code>prefix</code> is a group alias for all warning classes prefixed by
+<code>prefix-</code>; currently <code>prefix-bnd</code>,
+<code>prefix-hle</code>, <code>prefix-lock</code>,
+<code>prefix-opsize</code>, <code>prefix-seg</code>.</p>
+</li>
+<li>
+<p> <code>prefix-bnd</code>: invalid BND prefix</p>
+<p><code>prefix-bnd</code> warns about ineffective use of the
+<code>BND</code> prefix when the <code>JMP</code> instruction is converted
+to the <code>SHORT</code> form. This should be extremely rare since the
+short <code>JMP</code> only is applicable to jumps inside the same module,
+but if it is legitimate, it may be necessary to use
+<code>bnd jmp dword</code>.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>prefix-hle</code>: invalid HLE prefix</p>
+<p><code>prefix-hle</code> warns about invalid use of the HLE
+<code>XACQUIRE</code> or <code>XRELEASE</code> prefixes.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>prefix-lock</code>: LOCK prefix on unlockable instructions</p>
+<p><code>prefix-lock</code> warns about <code>LOCK</code> prefixes on
+unlockable instructions.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>prefix-opsize</code>: invalid operand size prefix</p>
+<p><code>prefix-opsize</code> warns that an operand prefix
+(<code>o16</code>, <code>o32</code>, <code>o64</code>, <code>osp</code>)
+invalid for the specified instruction has been specified. The operand
+prefix will be ignored by the assembler.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>prefix-seg</code>: segment prefix ignored in 64-bit mode</p>
+<p><code>prefix-seg</code> warns that an <code>es</code>, <code>cs</code>,
+<code>ss</code> or <code>ds</code> segment override prefix has no effect in
+64-bit mode. The prefix will still be generated as requested.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>ptr</code>: non-NASM keyword used in other assemblers</p>
+<p><code>ptr</code> warns about keywords used in other assemblers that
+might indicate a mistake in the source code. Currently only the MASM
+<code>PTR</code> keyword is recognized. See also
+<a href="nasmdoc6.html#section-6.5">section 6.5</a>.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>regsize</code>: register size specification ignored</p>
+<p><code>regsize</code> warns about a register with implicit size (such as
+<code>EAX</code>, which is always 32 bits) been given an explicit size
+specification which is inconsistent with the size of the named register,
+e.g. <code>WORD EAX</code>. <code>DWORD EAX</code> or <code>WORD AX</code>
+are permitted, and do not trigger this warning. Some registers which <em>do
+not</em> imply a specific size, such as <code>K0</code>, may need this
+specification unless the instruction itself implies the instruction size:</p>
+<pre>
+     KMOVW K0,[foo]          ; Permitted, KMOVW implies 16 bits 
+     KMOV  WORD K0,[foo]     ; Permitted, WORD K0 specifies instruction size 
+     KMOV  K0,WORD [foo]     ; Permitted, WORD [foo] specifies instruction size 
+     KMOV  K0,[foo]          ; Not permitted, instruction size ambiguous
+</pre>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>unknown-pragma</code>: unknown %pragma facility or directive</p>
+<p><code>unknown-pragma</code> is a backwards compatibility alias for
+<code>pragma-unknown</code>.</p>
+</li>
+<li>
+<p> <code>unknown-warning</code>: unknown warning in &ndash;W/-w or warning
+directive</p>
+<p><code>unknown-warning</code> warns about a <code>-w</code> or
+<code>-W</code> option or a <code>[WARNING]</code> directive that contains
+an unknown warning name or is otherwise not possible to process.</p>
+<p>Disabled by default.</p>
+</li>
+<li>
+<p> <code>user</code>: %warning directives</p>
+<p><code>user</code> controls output of <code>%warning</code> directives
+(see <a href="nasmdoc4.html#section-4.11">section 4.11</a>).</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>warn-stack-empty</code>: warning stack empty</p>
+<p><code>warn-stack-empty</code> a [WARNING POP] directive was executed
+when the warning stack is empty. This is treated as a [WARNING *all]
+directive.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>zeroing</code>: RESx in initialized section becomes zero</p>
+<p><code>zeroing</code> a <code>RESx</code> directive was used in a section
+which contains initialized data, and the output format does not support
+this. Instead, this will be replaced with explicit zero content, which may
+produce a large output file.</p>
+<p>Enabled by default.</p>
+</li>
+<li>
+<p> <code>zext-reloc</code>: relocation zero-extended to match output
+format</p>
+<p><code>zext-reloc</code> warns that a relocation has been zero-extended
+due to limitations in the output format.</p>
+<p>Enabled by default.</p>
+</li>
+</ul>
+</div>
+</body>
+</html>

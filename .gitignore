@@ -1,0 +1,7 @@
+# Git ignore rules.
+
+/bin/*
+#!/bin/.dummy
+!/bin/TD.EXE
+#/nasm/*
+#!/nasm/.add-nasm-here

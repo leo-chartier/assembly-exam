@@ -1,0 +1,7582 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>NASM - The Netwide Assembler</title>
+<link href="nasmdoc.css" rel="stylesheet" type="text/css" />
+<link href="local.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<ul class="navbar">
+<li class="first"><a class="prev" href="nasmdoce.html">Appendix E</a></li>
+<li><a class="toc" href="nasmdoc0.html">Contents</a></li>
+<li class="last"><a class="index" href="nasmdoci.html">Index</a></li>
+</ul>
+<div class="title">
+<h1>NASM - The Netwide Assembler</h1>
+<span class="subtitle">version 2.16.01</span>
+</div>
+<div class="contents"
+>
+<h2 class="index">Index</h2>
+<div class="index">
+<ul>
+<li>
+<div class="term">
+<code>!</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>!=</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>$</code>, current address
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5">3.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>$</code>, prefix
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdoc3.html#section-3.4.1">3.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>$$</code> token
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5">3.5</a>, <a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%,</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.12">4.2.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%[</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.3">4.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%[]</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%</code> prefix to <code>DB</code> lists
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%!</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.8">4.1.8</a>, <a href="nasmdoc4.html#section-4.13.2">4.13.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%$</code> and <code>%$$</code> prefixes
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.2">4.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%%</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>, <a href="nasmdoc4.html#section-4.5.2">4.5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%*?</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.6">4.2.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%*??</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.6">4.2.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%+</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>, <a href="nasmdoc4.html#section-4.2.4">4.2.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%+1</code> and <code>%-1</code> syntax
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.10">4.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%?</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.5">4.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%??</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.5">4.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%00</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.7">4.5.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%0</code> parameter count
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.5">4.5.5</a>, <a href="nasmdoc4.html#section-4.5.6">4.5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%abs()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.1">4.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%arg</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.10.1">4.10.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%assign</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.8">4.2.8</a>, <a href="nasmdoc4.html#section-4.4.4">4.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%clear</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.13.3">4.13.3</a>, <a href="nasmdoc5.html">5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%cond()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.2">4.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%count()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.3">4.4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%defalias</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.11">4.2.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%define</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.20">2.1.20</a>, <a href="nasmdoc4.html#section-4.2.1">4.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%defstr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.9">4.2.9</a>, <a href="nasmdoc4.html#section-4.4.8">4.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%deftok</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.10">4.2.10</a>, <a href="nasmdoc4.html#section-4.4.12">4.4.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%depend</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.8.3">4.8.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elif</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6">4.6</a>, <a href="nasmdoc4.html#section-4.6.4">4.6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifctx</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.3">4.6.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifdef</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.1">4.6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifempty</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.8">4.6.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifenv</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.9">4.6.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifid</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifidn</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifidni</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifmacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.2">4.6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifn</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6">4.6</a>, <a href="nasmdoc4.html#section-4.6.4">4.6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnctx</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.3">4.6.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifndef</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.1">4.6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnempty</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.8">4.6.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnenv</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.9">4.6.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnid</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnidn</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnidni</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnmacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.2">4.6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnnum</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnstr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifntoken</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.7">4.6.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifnum</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%elifstr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%eliftoken</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.7">4.6.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%else</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6">4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%endrep</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.7">4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%error</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.11">4.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%eval()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.8">4.2.8</a>, <a href="nasmdoc4.html#section-4.4.4">4.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%exitrep</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.7">4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%fatal</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.11">4.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%iassign</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.8">4.2.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%idefalias</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.11">4.2.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%idefine</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.1">4.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%idefstr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.9">4.2.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ideftok</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.10">4.2.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%if</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.4.5">4.4.5</a>,
+ <a href="nasmdoc4.html#section-4.6">4.6</a>, <a href="nasmdoc4.html#section-4.6.4">4.6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifctx</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.3">4.6.3</a>, <a href="nasmdoc4.html#section-4.9.6">4.9.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifdef</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.1">4.6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifempty</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.8">4.6.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifenv</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.9">4.6.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifid</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifidn</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifidni</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifmacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.2">4.6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifn</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6">4.6</a>, <a href="nasmdoc4.html#section-4.6.4">4.6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnctx</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.3">4.6.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifndef</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.1">4.6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnempty</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.8">4.6.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnenv</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.9">4.6.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnid</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnidn</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnidni</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnmacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.2">4.6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnnum</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnstr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifntoken</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.7">4.6.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifnum</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ifstr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%iftoken</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.7">4.6.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%imacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.5">4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%include</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.18">2.1.18</a>, <a href="nasmdoc2.html#section-2.1.19">2.1.19</a>,
+ <a href="nasmdoc4.html#section-4.8.1">4.8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%is()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.5">4.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%ixdefine</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.2">4.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%line</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.33">2.1.33</a>, <a href="nasmdoc4.html#section-4.1.3">4.1.3</a>,
+ <a href="nasmdoc4.html#section-4.1.8">4.1.8</a>, <a href="nasmdoc4.html#section-4.13.1">4.13.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%local</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.10.3">4.10.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%macro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.5">4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%num()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.6">4.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%pathsearch</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.18">2.1.18</a>, <a href="nasmdoc4.html#section-4.8.2">4.8.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%pop</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9">4.9</a>, <a href="nasmdoc4.html#section-4.9.1">4.9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%pragma</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.12">4.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%push</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9">4.9</a>, <a href="nasmdoc4.html#section-4.9.1">4.9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%rep</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.5">3.2.5</a>, <a href="nasmdoc4.html#section-4.1.4">4.1.4</a>,
+ <a href="nasmdoc4.html#section-4.7">4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%repl</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.5">4.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%rotate</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.8">4.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%sel()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.2">4.4.2</a>, <a href="nasmdoc4.html#section-4.4.7">4.4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%stacksize</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.10.2">4.10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%str()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.9">4.2.9</a>, <a href="nasmdoc4.html#section-4.4.8">4.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%strcat</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3.1">4.3.1</a>, <a href="nasmdoc4.html#section-4.4.9">4.4.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%strcat()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.9">4.4.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%strlen</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3.2">4.3.2</a>, <a href="nasmdoc4.html#section-4.4.10">4.4.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%strlen()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.10">4.4.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%substr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3.3">4.3.3</a>, <a href="nasmdoc4.html#section-4.4.11">4.4.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%substr()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.4.11">4.4.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%tok()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.10">4.2.10</a>, <a href="nasmdoc4.html#section-4.4.12">4.4.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%undef</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.21">2.1.21</a>, <a href="nasmdoc4.html#section-4.2.7">4.2.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%unimacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.12">4.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%unmacro</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.12">4.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%use</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.8.4">4.8.4</a>, <a href="nasmdoc6.html">6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%warning</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.11">4.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>%xdefine</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.2">4.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&amp;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.8">3.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&amp;&amp;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.4">3.5.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>*</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>+</code> modifier
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.3">4.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>+</code> operator, binary
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.10">3.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>+</code> operator, unary
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-</code> operator, binary
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.10">3.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-</code> operator, unary
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--before</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.30">2.1.30</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--(g|l)postfix</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.28">2.1.28</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--(g|l)prefix</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.28">2.1.28</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--keep-all</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.32">2.1.32</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--limit-X</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.31">2.1.31</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--no-line</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.33">2.1.33</a>, <a href="nasmdoc4.html#section-4.13.1">4.13.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--pragma</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.29">2.1.29</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--reproducible</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.34">2.1.34</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>--v</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.27">2.1.27</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-a</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.23">2.1.23</a>, <a href="nasmdocb.html#section-B.2.3">B.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-b</code>
+</div>
+<div class="ref">
+<a href="nasmdocb.html#section-B.2">B.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-D</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.20">2.1.20</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-d</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.20">2.1.20</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-E</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.22">2.1.22</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-e</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.22">2.1.22</a>, <a href="nasmdocb.html#section-B.2.4">B.2.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-F</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.13">2.1.13</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-f</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.2">2.1.2</a>, <a href="nasmdoc8.html">8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-g</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.14">2.1.14</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-h</code>
+</div>
+<div class="ref">
+<a href="nasmdocb.html#section-B.2">B.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-I</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.18">2.1.18</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-i</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.18">2.1.18</a>, <a href="nasmdocb.html#section-B.2.3">B.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-k</code>
+</div>
+<div class="ref">
+<a href="nasmdocb.html#section-B.2.4">B.2.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-L</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.4">2.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-l</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.3">2.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-M</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.5">2.1.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MD</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.8">2.1.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MF</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.7">2.1.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MG</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.6">2.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MP</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.11">2.1.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MQ</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.10">2.1.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MT</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.9">2.1.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-MW</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.12">2.1.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-O</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.24">2.1.24</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-o</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.1">2.1.1</a>, <a href="nasmdocb.html#section-B.2.1">B.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-P</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.19">2.1.19</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-p</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.19">2.1.19</a>, <a href="nasmdoc4.html#section-4.8.1">4.8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-r</code>
+</div>
+<div class="ref">
+<a href="nasmdocb.html#section-B.2">B.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-s</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.17">2.1.17</a>, <a href="nasmdocb.html#section-B.2.2">B.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-soname</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.6">10.2.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-t</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.25">2.1.25</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-U</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.21">2.1.21</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-u</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.21">2.1.21</a>, <a href="nasmdocb.html#section-B.2">B.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-v</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.27">2.1.27</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-W</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.26">2.1.26</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-w</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.26">2.1.26</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-Werror</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.26">2.1.26</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-Wno-error</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.26">2.1.26</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-X</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.15">2.1.15</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>-Z</code> option
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.16">2.1.16</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..@</code> symbol prefix
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.9">3.9</a>, <a href="nasmdoc4.html#section-4.5.2">4.5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..got</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..gotoff</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..gotpc</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..gottpoff</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.4">8.9.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..plt</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..start</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.6">8.4.6</a>, <a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..sym</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>..tlsie</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.4">8.9.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.bss</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>, <a href="nasmdoc8.html#section-8.10">8.10</a>,
+ <a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.COM</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>, <a href="nasmdoc9.html#section-9.2">9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.comment</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.data</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>, <a href="nasmdoc8.html#section-8.10">8.10</a>,
+ <a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.drectve</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.EXE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>, <a href="nasmdoc9.html#section-9.1">9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.lbss</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.ldata</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.lrodata</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.nolist</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.11">4.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.obj</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1">9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.rodata</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.SYS</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>, <a href="nasmdoc9.html#section-9.3">9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.tbss</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.tdata</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>.text</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>, <a href="nasmdoc8.html#section-8.10">8.10</a>,
+ <a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>/</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>//</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;&lt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;&lt;&lt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;=</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;=&gt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;=&gt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&lt;&gt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>=</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>==</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&gt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&gt;=</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&gt;&gt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>&gt;&gt;&gt;</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>?</code>, data syntax
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>?</code>, operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.1">3.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+\c{section
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.2">8.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>^</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.7">3.5.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>^^</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.3">3.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?ALIGNMODE?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.2">6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?bfloat16?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?BITS?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.3">5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?DATE?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?DATE_NUM?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?DEBUG_FORMAT?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.5">5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?FILE?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.2">5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?FLOAT?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.12">7.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?FLOAT_DAZ?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.12">7.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?FLOAT_ROUND?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.12">7.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float8?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float16?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float32?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float64?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float80e?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float80m?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float128h?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?float128l?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?Infinity?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?LINE?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.2">5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NaN?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_MAJOR?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_MINOR?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_PATCHLEVEL?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_SNAPSHOT?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_SUBMINOR?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_VER?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1.2">5.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?NASM_VERSION_ID?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1.1">5.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?OUTPUT_FORMAT?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.4">5.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?PASS?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.8">5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?QNaN?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?SECT?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3.1">7.3.1</a>, <a href="nasmdoc7.html#section-7.4">7.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?SNaN?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?TIME?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?TIME_NUM?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?USE_*?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.7">5.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?UTC_DATE?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?UTC_DATE_NUM?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?UTC_TIME?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?UTC_TIME_NUM?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.6">5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?utf16?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?utf16be?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?utf16le?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?utf32?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?utf32be?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__?utf32le?__</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>__NASMDEFSEG</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>_DATA</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.2">9.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>_GLOBAL_OFFSET_TABLE_</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>_TEXT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.2">9.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+`nowait'
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.6">2.2.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>|</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.6">3.5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>||</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.2">3.5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>~</code> operator
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+1's complement
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+2's complement
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+16-bit mode, versus 32-bit mode
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.1">7.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+64-bit displacement
+</div>
+<div class="ref">
+<a href="nasmdo12.html#section-12.2">12.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+64-bit immediate
+</div>
+<div class="ref">
+<a href="nasmdo12.html#section-12.2">12.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>a.out</code>, BSD version
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.11">8.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>a.out</code>, Linux version
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.10">8.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>A16</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdo11.html#section-11.3">11.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>A32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdo11.html#section-11.3">11.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>A64</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdo11.html#section-11.3">11.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>a86</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2">2.2</a>, <a href="nasmdoc2.html#section-2.2.2">2.2.2</a>,
+ <a href="nasmdoc2.html#section-2.2.6">2.2.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ABS</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.3">3.3</a>, <a href="nasmdoc7.html#section-7.2.1">7.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ABSOLUTE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.4">7.4</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+addition
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.10">3.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+address-size prefixes
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+addressing, mixed-size
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.2">11.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+algebra
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.3">3.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ALIGN</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.10.1">5.10.1</a>, <a href="nasmdoc6.html#section-6.2">6.2</a>,
+ <a href="nasmdoc8.html#section-8.1.2">8.1.2</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ALIGN</code>, smart
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.2">6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+align, elf attribute
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ALIGNB</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.10.1">5.10.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+alignment
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.10">5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+alignment, in <code>bin</code> sections
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.2">8.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+alignment, in ELF sections
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+alignment, in <code>obj</code> sections
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+alignment, in <code>win32</code> sections
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+alignment, of ELF common variables
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.7">8.9.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ALIGNMODE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.2">6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ALINK</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>alink.sourceforge.net</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>alloc</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+alternate register names
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.1">6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>altreg</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.1">6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+ambiguity
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.3">2.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>aout</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.10">8.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>aoutb</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>arg</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.5">9.4.5</a>, <a href="nasmdo10.html#section-10.1.4">10.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>as86</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+assembler directives
+</div>
+<div class="ref">
+<a href="nasmdoc7.html">7</a>
+</div>
+</li>
+<li>
+<div class="term">
+assembly-time options
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.20">2.1.20</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ASSUME</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.4">2.2.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>AT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.2">5.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>auto-sync</code>
+</div>
+<div class="ref">
+<a href="nasmdocb.html#section-B.2.3">B.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+baddb
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>bf16</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.3">6.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>bfloat16</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>bin</code> output format
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.2">2.1.2</a>, <a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+bin, multisection
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+binary
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.1">3.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+binary files
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.3">3.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+bit shift
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>BITS</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.1">7.1</a>, <a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+bitwise AND
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.8">3.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+bitwise OR
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.6">3.5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+bitwise XOR
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.7">3.5.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+block IFs
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.6">4.9.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>BND</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.2.2">7.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+boolean, AND
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.4">3.5.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+boolean, OR
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.2">3.5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+boolean, XOR
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.3">3.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+boot loader
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+boot sector
+</div>
+<div class="ref">
+<a href="nasmdo13.html#section-13.1.3">13.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+Borland, Pascal
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.5">9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+Borland, Win32 compilers
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+braces, after <code>%</code> sign
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.9">4.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+braces, around macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5">4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+BSD
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+bug tracker
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.2">E.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+bugs
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.2">E.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>BYTE</code>
+</div>
+<div class="ref">
+<a href="nasmdo13.html#section-13.1.1">13.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+C calling convention
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.3">9.4.3</a>, <a href="nasmdo10.html#section-10.1.2">10.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+C symbol names
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.1">9.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>c16.mac</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.5">9.4.5</a>, <a href="nasmdoc9.html#section-9.5.3">9.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>c32.mac</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.1.4">10.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>CALL FAR</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+case sensitivity
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.1">2.2.1</a>, <a href="nasmdoc4.html#section-4.2.1">4.2.1</a>,
+ <a href="nasmdoc4.html#section-4.2.2">4.2.2</a>, <a href="nasmdoc4.html#section-4.2.8">4.2.8</a>,
+ <a href="nasmdoc4.html#section-4.5">4.5</a>, <a href="nasmdoc4.html#section-4.6.5">4.6.5</a>,
+ <a href="nasmdoc8.html#section-8.4.3">8.4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+changing sections
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3">7.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+character constant
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.4.3">3.4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+character strings
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.2">3.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+circular references
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.1">4.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>CLASS</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+CodeView debugging format
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.3">8.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>coff</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.7">8.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+colon
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+comdat section, in win32
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+comdat symbol, in win32
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+comdat, win32 attribute
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+comma
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.4">4.5.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+command-line
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1">2.1</a>, <a href="nasmdoc8.html">8</a>
+</div>
+</li>
+<li>
+<div class="term">
+commas in macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.3">4.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+comment
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdoc4.html#section-4.1.2">4.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+comment, ending in <code>\</code>
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.2">4.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+comment, removal
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.2">4.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+comment, syntax
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.2">4.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>COMMON</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.8">7.8</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>COMMON</code>, ELF extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.7">8.9.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>COMMON</code>, <code>obj</code> extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.8">8.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+Common Object File Format
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.7">8.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+common variables
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.8">7.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+common variables, alignment in ELF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.7">8.9.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+common variables, element size
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.8">8.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>comp.os.msdos.programmer</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.3">9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+comparison operators
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.5">3.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+concatenating macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.9">4.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+concatenating strings
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3.1">4.3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+concatenation
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+condition codes as macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.10">4.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+conditional assembly
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.6">4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+conditional comma operator
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.12">4.2.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+conditional jumps
+</div>
+<div class="ref">
+<a href="nasmdo13.html#section-13.1.2">13.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+conditional-return macro
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.10">4.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+constants
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4">3.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+context fall-through lookup
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.4">4.9.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+context stack
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9">4.9</a>, <a href="nasmdoc4.html#section-4.9.6">4.9.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+context-local labels
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.8">4.1.8</a>, <a href="nasmdoc4.html#section-4.9.2">4.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+context-local single-line macros
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.3">4.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+continuation line
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.1">4.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+continuation lines
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.2">4.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+counting macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.6">4.5.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>CPU</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.11">7.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>CPUID</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.3">3.4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+creating contexts
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.1">4.9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+critical expression
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.2">3.2.2</a>, <a href="nasmdoc3.html#section-3.8">3.8</a>,
+ <a href="nasmdoc4.html#section-4.2.8">4.2.8</a>, <a href="nasmdoc4.html#section-4.4.4">4.4.4</a>,
+ <a href="nasmdoc7.html#section-7.4">7.4</a>, <a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>cv8</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.3">8.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+daily development snapshots
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.1">E.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>data</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+data structure
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.4">9.4.4</a>, <a href="nasmdo10.html#section-10.1.3">10.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DB</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>dbg</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.13">8.13</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DD</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+debug information
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.14">2.1.14</a>
+</div>
+</li>
+<li>
+<div class="term">
+debug information format
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.13">2.1.13</a>
+</div>
+</li>
+<li>
+<div class="term">
+decimal
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.1">3.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+declaring structures
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.1">5.9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DEFAULT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.2">7.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>default</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+default macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.5">4.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+default name
+</div>
+<div class="ref">
+<a href="nasmdoc8.html">8</a>
+</div>
+</li>
+<li>
+<div class="term">
+default-<code>WRT</code> mechanism
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.7">8.4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+defining sections
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3">7.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+design goals
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.2">2.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+detokenization
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.1.5">4.1.5</a>,
+ <a href="nasmdoc4.html#section-4.1.8">4.1.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+DevPac
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.9">3.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+directives
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.5">4.1.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+disabling listing expansion
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.11">4.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+division
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+division, signed
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+division, unsigned
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+DJGPP
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.7">8.7</a>, <a href="nasmdo10.html">10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>djlink</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+DLL symbols, exporting
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.5">8.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+DLL symbols, importing
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.4">8.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DO</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+DOS
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.16">2.1.16</a>, <a href="nasmdoc2.html#section-2.1.17">2.1.17</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DQ</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DUP</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>,
+ <a href="nasmdoc3.html#section-3.2.5">3.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DW</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DWORD</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DY</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>DZ</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+effective addresses
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdoc3.html#section-3.3">3.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+element size, in common variables
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.8">8.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+ELF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+ELF, 16-bit code
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.8">8.9.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+ELF, debug formats
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.9">8.9.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+ELF, shared libraries
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>elf32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>elf64</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>elfx32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>endproc</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.5">9.4.5</a>, <a href="nasmdo10.html#section-10.1.4">10.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ENDSTRUC</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.1">5.9.1</a>, <a href="nasmdoc7.html#section-7.4">7.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+environment
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.35">2.1.35</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EQU</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.4">3.2.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+error messages
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.16">2.1.16</a>, <a href="nasmdoc2.html#section-2.1.17">2.1.17</a>
+</div>
+</li>
+<li>
+<div class="term">
+error reporting format
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.15">2.1.15</a>
+</div>
+</li>
+<li>
+<div class="term">
+escape sequences
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.2">3.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EVEN</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.10.1">5.10.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+exact matches
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.12">4.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXE_begin</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.2">9.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXE_end</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.2">9.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXE_stack</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.2">9.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXE2BIN</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.2.2">9.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>exebin.mac</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.2">9.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>exec</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+Executable and Linkable Format
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXPORT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.5">8.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+exporting symbols
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.7">7.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+expressions
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.22">2.1.22</a>, <a href="nasmdoc3.html#section-3.5">3.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+extension
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.1">2.1.1</a>, <a href="nasmdoc8.html">8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXTERN</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.5">7.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXTERN</code>, <code>elf</code> extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.6">8.9.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>EXTERN</code>, <code>obj</code> extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.7">8.4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+extracting substrings
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3.3">4.3.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+far call
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.5">2.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+far common variables
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.8">8.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+far pointer
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>FARCODE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.5">9.4.5</a>, <a href="nasmdoc9.html#section-9.5.3">9.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>fini_array</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>FLAT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+flat memory model
+</div>
+<div class="ref">
+<a href="nasmdo10.html">10</a>
+</div>
+</li>
+<li>
+<div class="term">
+flat-form binary
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>FLOAT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.12">7.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+floating-point, constants
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>, <a href="nasmdoc7.html#section-7.12">7.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+floating-point, packed BCD constants
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.7">3.4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+floating-point
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.6">2.2.6</a>, <a href="nasmdoc3.html#section-3.1">3.1</a>,
+ <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>follows=</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+format-specific directives
+</div>
+<div class="ref">
+<a href="nasmdoc7.html">7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>fp</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.3">6.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+frame pointer
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.3">9.4.3</a>, <a href="nasmdoc9.html#section-9.5.1">9.5.1</a>,
+ <a href="nasmdo10.html#section-10.1.2">10.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+FreeBSD
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+FreeLink
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ftp.simtel.net</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>function</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+functions, C calling convention
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.3">9.4.3</a>, <a href="nasmdo10.html#section-10.1.2">10.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+functions, <code>PASCAL</code> calling convention
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.5.1">9.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>(G|L)POSTFIX</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.10">7.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>(G|L)PREFIX</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.10">7.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>git</code>
+</div>
+<div class="ref">
+<a href="nasmdocd.html#section-D.2">D.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GLOBAL</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.7">7.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GLOBAL</code>, <code>aoutb</code> extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GLOBAL</code>, ELF extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+global offset table
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GLOBAL</code>, <code>rdf</code> extensions to
+</div>
+<div class="ref">
+</div>
+</li>
+<li>
+<div class="term">
+GOT
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>, <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GOT</code> relocations
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.3">10.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GOTOFF</code> relocations
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.2">10.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GOTPC</code> relocations
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.1">10.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+graphics
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.3">3.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+greedy macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.3">4.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>GROUP</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.2">8.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+groups
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+here token
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5">3.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+hexadecimal
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.1">3.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>hidden</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+hybrid syntaxes
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.2">2.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>IEND</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.2">5.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ifunc</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4">6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2c()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2cw()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2e()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2f()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2fw()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ilog2w()</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>IMPORT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.4">8.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+import library
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.4">8.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+importing symbols
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.5">7.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+importing symbols, unconditionally
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.6">7.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>INCBIN</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.3">3.2.3</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+include search path
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.18">2.1.18</a>
+</div>
+</li>
+<li>
+<div class="term">
+including other files
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.8.1">4.8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+inefficient code
+</div>
+<div class="ref">
+<a href="nasmdo13.html#section-13.1.1">13.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+infinite loop
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5">3.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+infinity
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+informational section
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>init_array</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+inline expansions
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.1.5">4.1.5</a>,
+ <a href="nasmdoc4.html#section-4.1.6">4.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+instances of structures
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.2">5.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+instruction list
+</div>
+<div class="ref">
+<a href="nasmdocf.html">F</a>
+</div>
+</li>
+<li>
+<div class="term">
+integer functions
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4">6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+integer logarithms
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.4.1">6.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+intel hex
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.2">8.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+Intel number formats
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>internal</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ISTRUC</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.2">5.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+iterating over macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.8">4.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ith</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.2">8.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>Jcc NEAR</code>
+</div>
+<div class="ref">
+<a href="nasmdo13.html#section-13.1.2">13.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>JMP DWORD</code>
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.1">11.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+jumps, mixed-size
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.1">11.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+label preceding macro
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.7">4.5.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+label prefix
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.9">3.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+label-orphan
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+last
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.4">4.5.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ld86</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+license
+</div>
+<div class="ref">
+<a href="nasmdoc1.html#section-1.1.1">1.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+linker, free
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Linux, <code>a.out</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.10">8.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+Linux, <code>as86</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+Linux, ELF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+list of warning classes
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+listing file
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.3">2.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+little-endian
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.3">3.4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+local labels
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.9">3.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+Mach, object file format
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8">8.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+Mach-O, object file format
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8">8.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>macho32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8">8.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>macho64</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8">8.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+MacOS X
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8">8.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+macro indirection
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>, <a href="nasmdoc4.html#section-4.2.3">4.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+macro library
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.18">2.1.18</a>
+</div>
+</li>
+<li>
+<div class="term">
+macro parameters range
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.4">4.5.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+macro processor
+</div>
+<div class="ref">
+<a href="nasmdoc4.html">4</a>
+</div>
+</li>
+<li>
+<div class="term">
+macro-local labels
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>, <a href="nasmdoc4.html#section-4.5.2">4.5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+macros
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.5">3.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+makefile dependencies
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.5">2.1.5</a>, <a href="nasmdoc2.html#section-2.1.6">2.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+map files
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.4">8.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+MASM
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2">2.2</a>, <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>,
+ <a href="nasmdoc3.html#section-3.2.5">3.2.5</a>, <a href="nasmdoc6.html#section-6.5">6.5</a>,
+ <a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+masm compatibility
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.5">6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+MASM, <code>DB</code> syntax
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+memory models
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.5">2.2.5</a>, <a href="nasmdoc9.html#section-9.4.2">9.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+memory operand
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+memory references
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.2">2.2.2</a>, <a href="nasmdoc3.html#section-3.3">3.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>merge</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+Microsoft OMF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+minifloat
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+Minix
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>misc</code> subdirectory
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.2">9.1.2</a>, <a href="nasmdoc9.html#section-9.4.5">9.4.5</a>,
+ <a href="nasmdo10.html#section-10.1.4">10.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+mixed-language program
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4">9.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+mixed-size addressing
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.2">11.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+mixed-size instruction
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.1">11.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+modulo
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+modulo, signed
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+modulo, unsigned
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+motorola s-records
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.3">8.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+MS-DOS
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+MS-DOS device drivers
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.3">9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+multi-line macro
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.1.6">4.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+multi-line macro expansion
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.7">4.1.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+multi-line macros
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.7">4.1.7</a>, <a href="nasmdoc4.html#section-4.5">4.5</a>,
+ <a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+multipass optimization
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.24">2.1.24</a>
+</div>
+</li>
+<li>
+<div class="term">
+multiple section names
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+multiplication
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+multiplier
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>multipush</code> macro
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.8">4.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+multisection
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+NaN
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.6">3.4.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>nasm -h</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.2">2.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+NASM version
+</div>
+<div class="ref">
+</div>
+</li>
+<li>
+<div class="term">
+NASM version, history
+</div>
+<div class="ref">
+<a href="nasmdocc.html">C</a>
+</div>
+</li>
+<li>
+<div class="term">
+NASM version, ID macro
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1.1">5.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+NASM version, macros
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+NASM version, string macro
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1.2">5.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>nasm-devel</code>
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.1.2">E.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>nasm.out</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.1">2.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>NASMENV</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.35">2.1.35</a>
+</div>
+</li>
+<li>
+<div class="term">
+ndisasm
+</div>
+<div class="ref">
+<a href="nasmdocb.html">B</a>
+</div>
+</li>
+<li>
+<div class="term">
+near call
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.5">2.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+near common variables
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.8">8.4.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+negation, arithmetic
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+negation, bitwise
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+negation, bitwise
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+negation, boolean
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+negation, boolean
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+NetBSD
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+new releases
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.1">E.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>no_dead_strip</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8.4">8.8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>noalloc</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>nobits</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>, <a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>NOBND</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.2.2">7.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>noexec</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>note</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>nowrite</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+NSIS
+</div>
+<div class="ref">
+<a href="nasmdocd.html#section-D.1">D.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Nullsoft Scriptable Installer
+</div>
+<div class="ref">
+<a href="nasmdocd.html#section-D.1">D.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+numeric constants
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.4.1">3.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>O16</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdo11.html#section-11.3">11.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>O32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>, <a href="nasmdo11.html#section-11.3">11.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>O64</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>obj</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>object</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+octal
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.1">3.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>OF_DEFAULT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.2">2.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>OFFSET</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.2">2.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+OMF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+omitted parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.5">4.5.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+OpenBSD
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+operand-size prefixes
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+operands
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+operating system
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+operating system, writing
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.1">11.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+operators
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5">3.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+operators, unary
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>ORG</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.1">8.1.1</a>, <a href="nasmdoc9.html#section-9.2.1">9.2.1</a>,
+ <a href="nasmdoc9.html#section-9.2.2">9.2.2</a>, <a href="nasmdo13.html#section-13.1.3">13.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+OS/2
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>osabi</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.1">8.9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+other preprocessor directives
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.13">4.13</a>
+</div>
+</li>
+<li>
+<div class="term">
+out of range, jumps
+</div>
+<div class="ref">
+<a href="nasmdo13.html#section-13.1.2">13.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+output file format
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.2">2.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+output formats
+</div>
+<div class="ref">
+<a href="nasmdoc8.html">8</a>
+</div>
+</li>
+<li>
+<div class="term">
+overlapping segments
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>OVERLAY</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+overloading, multi-line macros
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.1">4.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+overloading, single-line macros
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.1">4.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+paradox
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.8">3.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>PASCAL</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.5.3">9.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+Pascal calling convention
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.5.1">9.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+period
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.9">3.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+PharLap
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+PIC
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>, <a href="nasmdoc8.html#section-8.11">8.11</a>,
+ <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+PLT
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>, <a href="nasmdo10.html#section-10.2.4">10.2.4</a>,
+ <a href="nasmdo10.html#section-10.2.5">10.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>PLT</code> relocations
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>, <a href="nasmdo10.html#section-10.2.4">10.2.4</a>,
+ <a href="nasmdo10.html#section-10.2.5">10.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+plt relocations
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.5">10.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+pointer, elf attribute
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+position-independent code
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>, <a href="nasmdoc8.html#section-8.11">8.11</a>,
+ <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+pre-defining macros
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.20">2.1.20</a>, <a href="nasmdoc4.html#section-4.2.1">4.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+pre-including files
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.19">2.1.19</a>
+</div>
+</li>
+<li>
+<div class="term">
+precedence
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5">3.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+preferred
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>preinit_array</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocess-only mode
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.22">2.1.22</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.22">2.1.22</a>, <a href="nasmdoc2.html#section-2.1.23">2.1.23</a>,
+ <a href="nasmdoc3.html#section-3.2.4">3.2.4</a>, <a href="nasmdoc3.html#section-3.5.11">3.5.11</a>,
+ <a href="nasmdoc4.html">4</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor directives
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.1.6">4.1.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor functions
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>, <a href="nasmdoc4.html#section-4.3">4.3</a>,
+ <a href="nasmdoc4.html#section-4.4">4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, comment removal
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.2">4.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, conditionals
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, continuation line
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.1">4.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, expansions
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1">4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, expressions
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.22">2.1.22</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, loops
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.4">4.1.4</a>, <a href="nasmdoc4.html#section-4.7">4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+preprocessor, variables
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.8">4.2.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+primitive directives
+</div>
+<div class="ref">
+<a href="nasmdoc7.html">7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>PRIVATE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>private_extern</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8.5">8.8.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>proc</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.5">9.4.5</a>, <a href="nasmdo10.html#section-10.1.4">10.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+procedure linkage table
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>, <a href="nasmdo10.html#section-10.2.4">10.2.4</a>,
+ <a href="nasmdo10.html#section-10.2.5">10.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+processor mode
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.1">7.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>progbits</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>, <a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+program entry point
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.6">8.4.6</a>, <a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+program origin
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.1">8.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>protected</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+pseudo-instructions
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>PUBLIC</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.7">7.7</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+pure binary
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1">8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+quick start
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2">2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>QWORD</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+redirecting errors
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.16">2.1.16</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>REL</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.3">3.3</a>, <a href="nasmdoc7.html#section-7.2.1">7.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+release candidates
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.1">E.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+relocations, PIC-specific
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.3">8.9.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+removing contexts
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.1">4.9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+renaming contexts
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.9.5">4.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+repeating
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.5">3.2.5</a>, <a href="nasmdoc4.html#section-4.7">4.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+reporting bugs
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.2">E.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>REQUIRED</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.6">7.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESB</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESD</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESO</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESQ</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>REST</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESW</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESY</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>RESZ</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>{rex}</code>
+</div>
+<div class="ref">
+<a href="nasmdocc.html#section-C.1.2">C.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+rotating macro parameters
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.8">4.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+searching for include files
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.8.1">4.8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SECTALIGN</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.10.2">5.10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SECTION</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3">7.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+section alignment, in <code>bin</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.2">8.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+section alignment, in ELF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+section alignment, in <code>obj</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+section alignment, in <code>win32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SECTION</code>, ELF extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SECTION</code>, <code>macho</code> extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8.1">8.8.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SECTION</code>, Windows extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.1">8.5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SEG</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>, <a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SEGMENT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3">7.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+segment address
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>, <a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+segment alignment, in <code>bin</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.2">8.1.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+segment alignment, in <code>obj</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+segment names, Borland Pascal
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.5.2">9.5.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>SEGMENT</code>, <code>obj</code> extensions to
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+segment override
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.4">2.2.4</a>, <a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+segments
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+segments, groups of
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.2">8.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+separator character
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.35">2.1.35</a>
+</div>
+</li>
+<li>
+<div class="term">
+shared libraries
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdo10.html#section-10.2">10.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>shift</code> command
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.5.8">4.5.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+signed, bit shift
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+signed, division
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+signed, modulo
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+single-line macros
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.1.6">4.1.6</a>, <a href="nasmdoc4.html#section-4.2">4.2</a>,
+ <a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+size, of symbols
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>smartalign</code>
+</div>
+<div class="ref">
+<a href="nasmdoc6.html#section-6.2">6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+snapshots, daily development
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.1">E.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Solaris x86
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+sound
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.3">3.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+source-listing file
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.3">2.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+square brackets
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.2">2.2.2</a>, <a href="nasmdoc3.html#section-3.3">3.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>srec</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.3">8.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>STACK</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+stack relative preprocessor directives
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.10">4.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+standard macro packages
+</div>
+<div class="ref">
+<a href="nasmdoc6.html">6</a>
+</div>
+</li>
+<li>
+<div class="term">
+standard macros
+</div>
+<div class="ref">
+<a href="nasmdoc5.html">5</a>
+</div>
+</li>
+<li>
+<div class="term">
+standardized section names
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3">7.3</a>, <a href="nasmdoc8.html#section-8.5.1">8.5.1</a>,
+ <a href="nasmdoc8.html#section-8.9.2">8.9.2</a>, <a href="nasmdoc8.html#section-8.10">8.10</a>,
+ <a href="nasmdoc8.html#section-8.11">8.11</a>, <a href="nasmdoc8.html#section-8.12">8.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>start=</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>STATIC</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.9">7.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>stderr</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.16">2.1.16</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>stdout</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.17">2.1.17</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>STRICT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.7">3.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+string
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.2">3.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+string, constants
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.1">3.2.1</a>, <a href="nasmdoc3.html#section-3.4.2">3.4.2</a>,
+ <a href="nasmdoc3.html#section-3.4.4">3.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+string, length
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3.2">4.3.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+string, manipulation in macros
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.3">4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+strings, elf attribute
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>strong</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>STRUC</code>
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9.1">5.9.1</a>, <a href="nasmdoc7.html#section-7.4">7.4</a>,
+ <a href="nasmdoc9.html#section-9.4.4">9.4.4</a>, <a href="nasmdo10.html#section-10.1.3">10.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+structure data types
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.9">5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+stub preprocessor
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.23">2.1.23</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>subsections_via_symbols</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8.3">8.8.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+subtraction
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.10">3.5.10</a>
+</div>
+</li>
+<li>
+<div class="term">
+suppressing preprocessing
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.23">2.1.23</a>
+</div>
+</li>
+<li>
+<div class="term">
+switching between sections
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.3">7.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+symbols, exporting from DLLs
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.5">8.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+symbols, importing from DLLs
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4.4">8.4.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+symbols, specifying sizes
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+symbols, specifying types
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+synchronization
+</div>
+<div class="ref">
+<a href="nasmdocb.html#section-B.2.2">B.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>TASM</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.25">2.1.25</a>
+</div>
+</li>
+<li>
+<div class="term">
+tasm
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2">2.2</a>, <a href="nasmdoc8.html#section-8.4">8.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>TBYTE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.7">2.2.7</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>test</code> subdirectory
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+testing, arbitrary numeric expressions
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.4">4.6.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+testing, context stack
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.3">4.6.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+testing, exact text identity
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.5">4.6.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+testing, multi-line macro existence
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.2">4.6.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+testing, single-line macro existence
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.1">4.6.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+testing, token types
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.6.6">4.6.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+thread local storage, in ELF
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.4">8.9.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+thread local storage, in <code>macho</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8.2">8.8.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>TIMES</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.5">3.2.5</a>,
+ <a href="nasmdoc3.html#section-3.8">3.8</a>, <a href="nasmdo13.html#section-13.1.3">13.1.3</a>,
+ <a href="nasmdo13.html#section-13.1.4">13.1.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>TLINK</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.2.2">9.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+tls
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.8.2">8.8.2</a>, <a href="nasmdoc8.html#section-8.9.2">8.9.2</a>,
+ <a href="nasmdoc8.html#section-8.9.4">8.9.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+trailing colon
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>TWORD</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.7">2.2.7</a>, <a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+type, of symbols
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+unary operators
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.12">3.5.12</a>
+</div>
+</li>
+<li>
+<div class="term">
+undefining macros
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.21">2.1.21</a>
+</div>
+</li>
+<li>
+<div class="term">
+underscore, in C symbols
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.4.1">9.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Unicode
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.2">3.4.2</a>, <a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+uninitialized
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2">3.2</a>, <a href="nasmdoc3.html#section-3.2.2">3.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+uninitialized storage
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.7">2.2.7</a>, <a href="nasmdoc3.html#section-3.2">3.2</a>,
+ <a href="nasmdoc3.html#section-3.2.1">3.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Unix
+</div>
+<div class="ref">
+</div>
+</li>
+<li>
+<div class="term">
+Unix, SCO
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+Unix, System V
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+UnixWare
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+unrolled loops
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.2.5">3.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+unsigned, bit shift
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.9">3.5.9</a>
+</div>
+</li>
+<li>
+<div class="term">
+unsigned, division
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+unsigned, modulo
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.5.11">3.5.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>UPPERCASE</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.1">2.2.1</a>, <a href="nasmdoc8.html#section-8.4.3">8.4.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>USE16</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.1.1">7.1.1</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>USE32</code>
+</div>
+<div class="ref">
+<a href="nasmdoc7.html#section-7.1.1">7.1.1</a>, <a href="nasmdoc8.html#section-8.4.1">8.4.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+user-defined errors
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.11">4.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+user-level directives
+</div>
+<div class="ref">
+<a href="nasmdoc5.html">5</a>, <a href="nasmdoc7.html">7</a>
+</div>
+</li>
+<li>
+<div class="term">
+UTF-8
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.2">3.4.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+UTF-16
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+UTF-32
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.4.5">3.4.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+VAL
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+valid characters
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.1">3.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+variable types
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.2.3">2.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+variables, preprocessor
+</div>
+<div class="ref">
+<a href="nasmdoc4.html#section-4.2.8">4.2.8</a>
+</div>
+</li>
+<li>
+<div class="term">
+version
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.27">2.1.27</a>
+</div>
+</li>
+<li>
+<div class="term">
+version number of nasm
+</div>
+<div class="ref">
+<a href="nasmdoc5.html#section-5.1">5.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>vfollows=</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+Visual C++
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5">8.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>vstart=</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.1.3">8.1.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>[WARNING]</code>
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.26">2.1.26</a>, <a href="nasmdoc7.html#section-7.13">7.13</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>all</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>bad-pragma</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>bnd</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>db-empty</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>ea</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>ea-absolute</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>ea-dispsize</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>environment</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>float</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>float-denorm</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>float-overflow</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>float-toolong</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>float-underflow</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>forward</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>hle</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>label</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>label-orphan</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>label-redef</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>label-redef-late</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>lock</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-def-case-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-def-greedy-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-def-param-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-defaults</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-params-legacy</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-params-multi</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>macro-params-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>negative-rep</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>not-my-pragma</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>number-overflow</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>obsolete</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>obsolete-nop</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>obsolete-removed</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>obsolete-valid</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>orphan-labels</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>other</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>phase</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-else</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-else-elif</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-else-else</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-empty-braces</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-environment</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-def</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-def-case-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-def-greedy-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-def-param-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-defaults</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-params</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-params-legacy</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-params-multi</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-params-single</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-macro-redef-multi</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-open</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-open-braces</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-open-brackets</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-open-string</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-rep-negative</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-sel-range</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pp-trailing</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pragma</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pragma-bad</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pragma-empty</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pragma-na</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>pragma-unknown</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>prefix</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>prefix-bnd</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>prefix-hle</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>prefix-lock</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>prefix-opsize</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>prefix-seg</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>ptr</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>regsize</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>unknown-pragma</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>unknown-warning</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>user</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>warn-stack-empty</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>zeroing</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning class, <code>zext-reloc</code>
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warning classes, list
+</div>
+<div class="ref">
+<a href="nasmdoca.html">A</a>
+</div>
+</li>
+<li>
+<div class="term">
+warnings
+</div>
+<div class="ref">
+<a href="nasmdoc2.html#section-2.1.26">2.1.26</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>weak</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.5">8.9.5</a>, <a href="nasmdoc8.html#section-8.9.6">8.9.6</a>
+</div>
+</li>
+<li>
+<div class="term">
+website
+</div>
+<div class="ref">
+<a href="nasmdoce.html#section-E.1">E.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Win32
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.4">8.4</a>, <a href="nasmdoc8.html#section-8.5">8.5</a>,
+ <a href="nasmdo10.html">10</a>
+</div>
+</li>
+<li>
+<div class="term">
+Win64
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.6">8.6</a>, <a href="nasmdo12.html">12</a>
+</div>
+</li>
+<li>
+<div class="term">
+Windows
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1">9.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+Windows, debugging formats
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.5.3">8.5.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>write</code>
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9.2">8.9.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+writing operating systems
+</div>
+<div class="ref">
+<a href="nasmdo11.html#section-11.1">11.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>WRT</code>
+</div>
+<div class="ref">
+<a href="nasmdoc3.html#section-3.6">3.6</a>, <a href="nasmdoc8.html#section-8.4">8.4</a>,
+ <a href="nasmdoc8.html#section-8.8.2">8.8.2</a>, <a href="nasmdoc8.html#section-8.9.3">8.9.3</a>,
+ <a href="nasmdoc8.html#section-8.9.4">8.9.4</a>, <a href="nasmdoc8.html#section-8.11">8.11</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>WRT ..got</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.3">10.2.3</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>WRT ..gotoff</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.2">10.2.2</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>WRT ..gotpc</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.1">10.2.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>WRT ..plt</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.5">10.2.5</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>WRT ..sym</code>
+</div>
+<div class="ref">
+<a href="nasmdo10.html#section-10.2.4">10.2.4</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>www.delorie.com</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>www.pcorner.com</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+<code>x2ftp.oulu.fi</code>
+</div>
+<div class="ref">
+<a href="nasmdoc9.html#section-9.1.1">9.1.1</a>
+</div>
+</li>
+<li>
+<div class="term">
+x32
+</div>
+<div class="ref">
+<a href="nasmdoc8.html#section-8.9">8.9</a>
+</div>
+</li>
+</ul>
+</div>
+
+</body>
+</html>
