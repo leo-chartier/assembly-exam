@@ -28,7 +28,7 @@
 ; -------------------------------------
 
 ; Choose the feature level here:
-%define LINE_IMPLEMENTATION_LEVEL 2
+%define LINE_IMPLEMENTATION_LEVEL 4
 
 ; This is the test bed code (don't add anything before this):
 %include "exam-lib.inc"
@@ -141,11 +141,57 @@ implementation2:
     ret
 
 implementation3:
-    ; TODO
+    ; al: Pixel color
+    ; bx: Index of the pixel in memory
+    ; cx: Pixel counter
+
+    ; Load the segment address
+    mov ax, [line_frameBufferSeg]
+    mov es, ax
+    ; Select the starting position
+    mov bx, [line_x0]
+    ; Select the color
+    mov al, [line_colorIndex]
+    ; Loop through the whole line
+    mov cx, 0
+    .loop:
+    mov di, bx
+    ; Draw the pixel
+    stosb
+    ; Increment and repeat
+    inc cx
+    add bx, SCREEN_W
+    cmp cx, SCREEN_H
+    jne .loop
     ret
 
 implementation4:
-    ; TODO
+    ; al: Pixel color
+    ; bx: Index of the pixel in memory
+    ; cx: Pixel's Y position
+
+    ; Load the segment address
+    mov ax, [line_frameBufferSeg]
+    mov es, ax
+    ; Select the starting position
+    mov ax, [line_y0]
+    mov bx, SCREEN_W
+    mul bx
+    mov bx, ax
+    add bx, [line_x0]
+    ; Select the color
+    mov al, [line_colorIndex]
+    ; Loop through the whole line
+    mov cx, [line_y0]
+    .loop:
+    mov di, bx
+    ; Draw the pixel
+    stosb
+    ; Increment and repeat
+    inc cx
+    add bx, SCREEN_W
+    cmp cx, [line_y1]
+    jbe .loop
     ret
 
 implementation5:
