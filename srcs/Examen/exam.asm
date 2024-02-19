@@ -46,6 +46,10 @@ section .bss
 
 section .text
 
+; Defining the screen size
+%define SCREEN_W 320
+%define SCREEN_H 200
+
 ; -------------------------------------
 ; Draw a line:
 drawLine:
@@ -53,13 +57,13 @@ drawLine:
 
     ; Here is just a tiny snippet to draw a pixel (you should expand/replace it, obviously)
     ; Draws a pixel at 160x100
-    mov ax ,[line_frameBufferSeg]
-    mov es ,ax
-    mov ax ,100     ; load y
-    mov bx ,320
+    mov ax, [line_frameBufferSeg]
+    mov es, ax
+    mov ax, 100     ; load y
+    mov bx, SCREEN_W
     mul bx
-    add ax ,160     ; load x
-    mov di ,ax
+    add ax, 160     ; load x
+    mov di, ax
     mov al, 0fh     ; set arbitrary color index.
     stosb
     ret
