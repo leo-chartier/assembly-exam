@@ -47,6 +47,13 @@ section .bss
     deltaY   resw 1
     movedX   resw 1
     movedY   resw 1
+    constXInc     resw 1
+    constYInc     resw 1
+    constIndexInc resw 1
+    slopeXInc     resw 1
+    slopeYInc     resw 1
+    slopeIndexInc resw 1
+    endValue      resw 1
 
 section .text
 
@@ -206,9 +213,6 @@ implementation5:
     ; bx: Index of the pixel in memory
     ; cx: Pixel's X position
 
-    ; TODO: Current program assumes x1 - x0 > y1 - y0
-    ; Needs to be able to switch which variable is incremented
-
     ; Calculate the slope
     mov ax, [line_x1]
     sub ax, [line_x0]
@@ -218,6 +222,34 @@ implementation5:
     sub ax, [line_y0]
     mov [deltaY], ax
     mov word [movedY], 0
+
+    ; Calculate the correct values depending on the slope
+    cmp ax, [deltaX]
+    jge .aboveYX
+    ; (Below the y=x line)
+    mov cx, [line_x0]
+    mov ax, [line_x1]
+    mov [endValue], ax
+    mov word [constXInc], 1
+    mov word [constYInc], 0
+    mov word [constIndexInc], 1
+    mov word [slopeXInc], 0
+    mov word [slopeYInc], 1
+    mov word [slopeIndexInc], SCREEN_W
+    jmp .init
+    .aboveYX:
+    ; (Above the y=x line)
+    mov cx, [line_y0]
+    mov ax, [line_y1]
+    mov [endValue], ax
+    mov word [constXInc], 0
+    mov word [constYInc], 1
+    mov word [constIndexInc], SCREEN_W
+    mov word [slopeXInc], 1
+    mov word [slopeYInc], 0
+    mov word [slopeIndexInc], 1
+    .init:
+
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
@@ -228,7 +260,6 @@ implementation5:
     mov bx, ax
     add bx, [line_x0]
     ; Loop through the whole line
-    mov cx, [line_x0]
     mov dx, 0
     .loop:
     mov di, bx
@@ -238,7 +269,8 @@ implementation5:
     ; Increment the positions
     inc cx
     inc word [movedX]
-    inc bx
+    add bx, [constIndexInc]
+
     ; Calculate our position to the slope
     push cx
     push dx
@@ -254,13 +286,17 @@ implementation5:
     pop dx
     pop cx
     cmp ax, 0
+
     ; Increment if necessary
     jge .noYoffset
-    add bx, SCREEN_W
-    inc word [movedY]
+    add bx, [slopeIndexInc]
+    mov ax, [slopeXInc]
+    add [movedX], ax
+    mov ax, [slopeYInc]
+    add [movedY], ax
     .noYoffset:
     ; Loop
-    cmp cx, [line_x1]
+    cmp cx, [endValue]
     jbe .loop
     ret
 
