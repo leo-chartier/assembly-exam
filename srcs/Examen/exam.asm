@@ -28,7 +28,7 @@
 ; -------------------------------------
 
 ; Choose the feature level here:
-%define LINE_IMPLEMENTATION_LEVEL 4
+%define LINE_IMPLEMENTATION_LEVEL 5
 
 ; This is the test bed code (don't add anything before this):
 %include "exam-lib.inc"
@@ -43,6 +43,9 @@ section .bss
     line_y0  resw 1
     line_x1  resw 1     ; p1
     line_y1  resw 1
+    deltaX   resw 1
+    deltaY   resw 1
+    x_acc    resw 1
 
 section .text
 
@@ -195,7 +198,68 @@ implementation4:
     ret
 
 implementation5:
-    ; TODO
+    ; Note to self: Review Bresenham without floating points
+    ; Note to self: Learn how to use the FPU
+
+    ; al: Pixel color and temporary variable
+    ; bx: Index of the pixel in memory
+    ; cx: Pixel's X position
+    ; dx: Number of pixels moved on X since last move on Y
+
+    ; ; TEMP
+    ; ; Assuming Q1
+    ; mov word [line_x0], 0
+    ; mov word [line_y0], 0
+    ; mov word [line_x1], SCREEN_W
+    ; mov word [line_y1], SCREEN_H
+    ; mov byte [line_colorIndex], 0fh
+
+    ; Calculate the slope
+    mov ax, [line_x1]
+    sub ax, [line_x0]
+    mov [deltaX], ax
+    mov ax, [line_y1]
+    sub ax, [line_y0]
+    mov [deltaY], ax
+    ; Load the segment address
+    mov ax, [line_frameBufferSeg]
+    mov es, ax
+    ; Select the starting position
+    mov ax, [line_y0]
+    mov bx, SCREEN_W
+    mul bx
+    mov bx, ax
+    add bx, [line_x0]
+    ; Loop through the whole line
+    mov cx, [line_x0]
+    mov dx, 0
+    .loop:
+    mov di, bx
+    ; Draw the pixel
+    mov al, [line_colorIndex]
+    stosb
+    ; Increment the positions
+    inc cx
+    inc dx
+    inc bx
+    ; Calculate our position to the slope
+    mov ax, [deltaY]
+    push cx
+    push dx
+    mul dx
+    mov cx, [deltaX]
+    div cx
+    pop dx
+    pop cx
+    cmp ax, 0
+    ; Increment if necessary
+    je .noYoffset
+    add bx, SCREEN_W
+    mov dx, 0
+    .noYoffset:
+    ; Loop
+    cmp cx, [line_x1]
+    jbe .loop
     ret
 
 implementation6:
