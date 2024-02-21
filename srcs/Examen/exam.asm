@@ -1,4 +1,11 @@
 [map symbols exam.map]
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                          ;;
+;;   THIS VERSION WAS MADE AFTER THE EXAM   ;;
+;;   AND SHOULD NOT BE TAKEN INTO ACCOUNT   ;;
+;;                                          ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ; -------------------------------------
 ; ALGOSUP assembly exam.
 ; -------------------------------------
@@ -45,15 +52,9 @@ section .bss
     line_y1  resw 1
     deltaX   resw 1
     deltaY   resw 1
-    movedX   resw 1
-    movedY   resw 1
-    constXInc     resw 1
-    constYInc     resw 1
-    constIndexInc resw 1
-    slopeXInc     resw 1
-    slopeYInc     resw 1
-    slopeIndexInc resw 1
-    endValue      resw 1
+    sx       resw 1
+    sy       resw 1
+    error_   resw 1
 
 section .text
 
@@ -64,35 +65,7 @@ section .text
 ; -------------------------------------
 ; Draw a line:
 drawLine:
-    ; TODO
-    ; Idea: Add padding to the implementations and use a relative jump instead
-    ; => "jump by" LINE_IMPLEMENTATION_LEVEL * size_of_implementation + offset
-    ; Idea 2 (simpler): Use the preprocessing by concatenating "implementation"
-    ; with the actual number
-    ; => jmp implementation(LINE_IMPLEMENTATION_LEVEL)
-    %if (LINE_IMPLEMENTATION_LEVEL == 1)
-    jmp implementation1
-    %endif
-    %if (LINE_IMPLEMENTATION_LEVEL == 2)
-    jmp implementation2
-    %endif
-    %if (LINE_IMPLEMENTATION_LEVEL == 3)
-    jmp implementation3
-    %endif
-    %if (LINE_IMPLEMENTATION_LEVEL == 4)
-    jmp implementation4
-    %endif
-    %if (LINE_IMPLEMENTATION_LEVEL == 5)
-    jmp implementation5
-    %endif
-    %if (LINE_IMPLEMENTATION_LEVEL == 6)
-    jmp implementation6
-    %endif
-    %if (LINE_IMPLEMENTATION_LEVEL == 7)
-    jmp implementation7
-    %endif
-    ; Value out of bounds
-    ret
+    jmp implementation %+ LINE_IMPLEMENTATION_LEVEL
 
 implementation1:
     ; al: Pixel color
@@ -123,10 +96,6 @@ implementation1:
     ret
 
 implementation2:
-    ; al: Pixel color
-    ; bx: Index of the pixel in memory
-    ; cx: Pixel's X position
-
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
@@ -152,10 +121,6 @@ implementation2:
     ret
 
 implementation3:
-    ; al: Pixel color
-    ; bx: Index of the pixel in memory
-    ; cx: Pixel counter
-
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
@@ -177,10 +142,6 @@ implementation3:
     ret
 
 implementation4:
-    ; al: Pixel color
-    ; bx: Index of the pixel in memory
-    ; cx: Pixel's Y position
-
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
@@ -206,178 +167,123 @@ implementation4:
     ret
 
 implementation5:
-    ; Note to self: Review Bresenham without floating points
-    ; Note to self: Learn how to use the FPU
-
-    ; al: Pixel color and temporary variable
-    ; bx: Index of the pixel in memory
-    ; cx: Pixel's X position
-    call calculateValues
     call bresenham
     ret
 
 implementation6:
-    call calculateValues
     call bresenham
     ret
 
 implementation7:
-    call calculateValues
     call bresenham
-    ret
-
-calculateValues:
-    mov ax, [line_x1]
-    mov bx, [line_x0]
-    mov cx, [line_y1]
-    mov dx, [line_y0]
-    mov word [movedX], 0
-    mov word [movedY], 0
-
-    ; Swap the two points to have x0 <= x1
-    cmp ax, bx
-    jae .noSwap
-    xchg ax, bx
-    mov [line_x1], ax
-    mov [line_x0], bx
-    xchg cx, dx
-    mov [line_y1], cx
-    mov [line_y0], dx
-    .noSwap:
-
-    ; Calculate the slope
-    sub ax, bx
-    mov [deltaX], ax
-    sub cx, dx
-    mov [deltaY], cx
-
-    ; Calculate the correct values depending on the slope
-    js .negDY
-    cmp cx, [deltaX]
-    jge .largePosDY
-    
-    .smallPosDY:
-    mov cx, [line_x0]
-    mov ax, [line_x1]
-    mov [endValue], ax
-    mov word [constXInc], 1
-    mov word [constYInc], 0
-    mov word [constIndexInc], 1
-    mov word [slopeXInc], 0
-    mov word [slopeYInc], 1
-    mov word [slopeIndexInc], SCREEN_W
-    ret
-    
-    .largePosDY:
-    mov cx, [line_y0]
-    mov ax, [line_y1]
-    mov [endValue], ax
-    mov word [constXInc], 0
-    mov word [constYInc], 1
-    mov word [constIndexInc], SCREEN_W
-    mov word [slopeXInc], 1
-    mov word [slopeYInc], 0
-    mov word [slopeIndexInc], 1
-    ret
-
-    .negDY:
-    add cx, [deltaX]
-    js .largePosDY
-
-    .smallNegDY:
-    mov cx, [line_x0]
-    mov ax, [line_x1]
-    mov [endValue], ax
-    mov word [constXInc], 1
-    mov word [constYInc], 0
-    mov word [constIndexInc], 1
-    mov word [slopeXInc], 0
-    mov word [slopeYInc], -1
-    mov word [slopeIndexInc], -SCREEN_W
-    ret
-    
-    .largeNegDY:
-    mov cx, [line_y0]
-    mov ax, [line_y1]
-    mov [endValue], ax
-    mov word [constXInc], 0
-    mov word [constYInc], -1
-    mov word [constIndexInc], -SCREEN_W
-    mov word [slopeXInc], 1
-    mov word [slopeYInc], 0
-    mov word [slopeIndexInc], 1
     ret
 
 bresenham:
     ; Load the segment address
     mov ax, [line_frameBufferSeg]
     mov es, ax
-    ; Select the starting position
+
+    ; Adapted from
+    ; https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm#All_cases
+
+    ; dx = abs(x1 - x0)
+    mov ax, [line_x1]
+    sub ax, [line_x0]
+    mov dx, ax
+    sar dx, 15
+    xor ax, dx
+    sub ax, dx
+    mov [deltaX], ax
+    ; sx = x0 < x1 ? 1 : -1
+    or dx, 1
+    mov [sx], dx
+    ; dy = -abs(y1 - y0)
+    mov ax, [line_y1]
+    sub ax, [line_y0]
+    mov dx, ax
+    sar dx, 15
+    xor ax, dx
+    sub ax, dx
+    neg ax
+    mov [deltaY], ax
+    ; sy = y0 < y1 ? 1 : -1
+    or dx, 1
+    mov [sy], dx
+    ; error = dx + dy
+    mov ax, [deltaX]
+    add ax, [deltaY]
+    mov [error_], ax
+    
+    ; while true
+    .while:
+    ;     plot(x0, y0)
+    call plot
+    ;     if x0 == x1 && y0 == y1 break
+    mov ax, [line_x0]
+    cmp ax, [line_x1]
+    jne .notBreak
+    mov ax, [line_y0]
+    cmp ax, [line_y1]
+    je .endWhile
+    .notBreak:
+    ;     e2 = 2 * error
+    mov dx, [error_]
+    shl dx, 1
+    ;     if e2 >= dy
+    cmp dx, [deltaY]
+    jl .lowerDy
+    ;         if x0 == x1 break
+    mov ax, [line_x0]
+    cmp ax, [line_x1]
+    je .endWhile
+    ;         error = error + dy
+    mov ax, [deltaY]
+    add [error_], ax
+    ;         x0 = x0 + sx
+    mov ax, [sx]
+    add [line_x0], ax
+    ;     end if
+    .lowerDy:
+    ;     if e2 <= dx
+    cmp dx, [deltaX]
+    jg .greaterDx
+    ;         if y0 == y1 break
+    mov ax, [line_y0]
+    cmp ax, [line_y1]
+    je .endWhile
+    ;         error = error + dx
+    mov ax, [deltaX]
+    add [error_], ax
+    ;         y0 = y0 + sy
+    mov ax, [sy]
+    add [line_y0], ax
+    ;     end if
+    .greaterDx:
+    ; end while
+    jmp .while
+    .endWhile:
+
+    ret
+
+plot:
+    ; Check for out of bounds
+    cmp word [line_x0], 0
+    jl .outOfBounds
+    cmp word [line_x0], SCREEN_W
+    jge .outOfBounds
+    cmp word [line_y0], 0
+    jl .outOfBounds
+    cmp word [line_y0], SCREEN_H
+    jge .outOfBounds
+
+    ; Display
     mov ax, [line_y0]
     mov bx, SCREEN_W
     mul bx
-    mov bx, ax
-    add bx, [line_x0]
-    ; Loop through the whole line
-    mov dx, 0
-    .loop:
-    mov di, bx
-
-    ; Draw the pixel if we are on screen
-    mov ax, [line_x0]
-    add ax, [movedX]
-    cmp ax, 0
-    jl .outOfBounds
-    cmp ax, SCREEN_W
-    jge .outOfBounds
-    ; TODO: Refacto the bound check on Y
-    mov ax, [line_y0]
-    cmp word [deltaY], 0
-    jl .boundNeg
-    add ax, [movedY]
-    jmp .boundPos
-    .boundNeg:
-    sub ax, [movedY]
-    .boundPos:
-    cmp ax, 0
-    jl .outOfBounds
-    cmp ax, SCREEN_H
-    jge .outOfBounds
-    ; Draw the pixel
+    add ax, [line_x0]
+    mov di, ax
     mov al, [line_colorIndex]
     stosb
+
     .outOfBounds:
-
-    ; Increment the positions
-    inc cx
-    inc word [movedX]
-    add bx, [constIndexInc]
-
-    ; Calculate our position to the slope
-    push cx
-    push dx
-    mov ax, [deltaY]
-    mov cx, [movedX]
-    mul cx
-    push ax
-    mov ax, [deltaX]
-    mov cx, [movedY]
-    mul cx
-    pop cx
-    sub ax, cx ; ax = (dY*mX - dX*mY) => Positive if above slope
-    pop dx
-    pop cx
-    cmp ax, 0
-
-    ; Increment if necessary
-    jge .noYoffset
-    add bx, [slopeIndexInc]
-    mov ax, [slopeXInc]
-    add [movedX], ax
-    mov ax, [slopeYInc]
-    add [movedY], ax
-    .noYoffset:
-    ; Loop
-    cmp cx, [endValue]
-    jbe .loop
     ret
